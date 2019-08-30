@@ -24,6 +24,6 @@ To install, you first need to install electron if you haven't already. This meth
 
 ## Using Lucee
 
-- Upload your ColdFusion files to `/lucee/webapps`
+- Upload your ColdFusion files to `/lucee/webapps/ROOT`
 - Access to Lucee admin - http://localhost:8888/lucee/admin/server.cfm
 - You can also access Lucee with http://localhost:8888/
