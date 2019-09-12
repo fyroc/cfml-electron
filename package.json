@@ -1,27 +1,27 @@
 {
-  "name": "lucee-electron",
-  "version": "0.1.0",
-  "description": "An example of how to run Lucee (CFML) inside of Electron.",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fyroc/lucee-electron.git"
-  },
-  "keywords": [
-    "electron",
-    "nodejs",
-    "run",
-    "shell"
-  ],
-  "author": "Cory Fail (fyroc)",
-  "license": "MIT",
-  "devDependencies": {
-    "electron-prebuilt": "^0.32.2"
-  },
-  "dependencies": {
-    "electron-is": "^3.0.0"
-  }
+    "name": "lucee-electron",
+    "version": "0.1.1",
+    "description": "An example of how to run Lucee (CFML) inside of Electron.",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fyroc/lucee-electron.git"
+    },
+    "keywords": [
+        "electron",
+        "nodejs",
+        "run",
+        "shell"
+    ],
+    "author": "Cory Fail (fyroc)",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "^6.0.8"
+    },
+    "dependencies": {
+        "electron-is": "^3.0.0"
+    }
 }
