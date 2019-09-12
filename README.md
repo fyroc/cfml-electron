@@ -4,11 +4,7 @@ An example of how to run Lucee (CFML) inside of Electron.
 ## Installation
 To install, you first need to install electron if you haven't already. This method could also be used for any Node.JS app.
 
-### Install electron
-
-`npm install electron --save-dev`
-
-### Next, clone this repo somewhere.
+### Clone this repo somewhere.
 
 `git clone https://github.com/fyroc/lucee-electron.git`
 
