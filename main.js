@@ -68,7 +68,6 @@ function createWindow() {
 
 function startLucee() {
     var windowsCmd = 'cd ' + app.getAppPath() + '\\lucee && ' + 'startup.bat'
-    console.log(windowsCmd);
     var cmd = (is.windows()) ? windowsCmd : './lucee/startup.sh';
 
     execute(cmd, (output) => {
@@ -78,7 +77,6 @@ function startLucee() {
 
 function stopLucee() {
     var windowsCmd = 'cd ' + app.getAppPath() + '\\lucee && ' + 'shutdown.bat'
-    console.log(windowsCmd);
     var cmd = (is.windows()) ? windowsCmd : './lucee/shutdown.sh'
 
     execute(cmd, (output) => {
