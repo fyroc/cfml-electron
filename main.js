@@ -88,7 +88,7 @@ function startCommandBox() {
             var box_path = app.getAppPath() + '/commandbox/box.jar';
         }
 
-        var cmd = `cd ${cfml_path} && ${java_path} -jar ${box_path} server start`;
+        var cmd = `cd "${cfml_path}" && "${java_path}" -jar "${box_path}" server start`;
 
         execute(cmd, (output) => {
             console.log(output)
@@ -110,7 +110,7 @@ function stopCommandBox() {
             var box_path = app.getAppPath() + '/commandbox/box.jar';
         }
 
-        var cmd = `cd ${cfml_path} && ${java_path} -jar ${box_path} server stop`;
+        var cmd = `cd "${cfml_path}" && "${java_path}" -jar "${box_path}" server stop`;
 
         execute(cmd, (output) => {
             console.log(output)
@@ -120,6 +120,8 @@ function stopCommandBox() {
 
 function execute(command, callback) {
     exec(command, (error, stdout, stderr) => { 
-        callback(stdout)
+        if( error ) callback(error)
+        if( stderr ) callback(stderr)
+        if( stdout ) callback(stdout)
     })
 }
