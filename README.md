@@ -1,14 +1,14 @@
-# lucee-electron
-An example of how to run Lucee (CFML) inside of Electron.
+# cfml-electron
+An example of how to run CommandBox (Any CFML Engine) inside of Electron.
 
 ## Installation
-To install, you first need to install NPM if you haven't already. This method could also be used for any Node.JS app.
+To install, you first need to install Node/NPM if you haven't already. This method could also be used for any Node.JS app.
 
 ### Clone this repo somewhere.
 
-`git clone https://github.com/fyroc/lucee-electron.git`
+`git clone https://github.com/fyroc/cfml-electron.git`
 
-`cd lucee-electron`
+`cd cfml-electron`
 
 ### Install NPM Modules
 
@@ -18,8 +18,8 @@ To install, you first need to install NPM if you haven't already. This method co
 
 `npm start`
 
-## Using Lucee
+## Using ColdBox
 
-- Upload your ColdFusion files to `/lucee/webapps/ROOT`
-- Access to Lucee admin - http://localhost:8888/lucee/admin/server.cfm
-- You can also access Lucee with http://localhost:8888/
+- Upload your ColdFusion files to `/cfml`
+- Edit the `server.json` file to fit your needs, just be sure the port matches what is in the main.js file
+- You can also access CommandBox with http://localhost:8888/ and the systemtray (can be hidden as well)

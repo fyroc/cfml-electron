@@ -9,11 +9,14 @@ const exec = require('child_process').exec
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+// Make sure this port matches the server.json port
+const commandbox_port = 8888
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-    startLucee()
+    startCommandBox()
     createWindow()
 })
 
@@ -35,10 +38,15 @@ app.on('activate', () => {
 })
 
 app.on('before-quit', () => {
-    stopLucee()
+    stopCommandBox()
 })
 
 function createWindow() {
+
+    require('find-java-home')(function(err, home){
+        if(err)return console.log(err);
+        console.log(home);
+    });
 
     // Create the browser window.
     win = new BrowserWindow({
@@ -51,8 +59,8 @@ function createWindow() {
 
     // and load the index.html of the app.
     setTimeout(function() {
-        win.loadURL('http://localhost:8888/')
-    }, 5000);
+        win.loadURL('http://localhost:'+commandbox_port+'/')
+    }, 15000);
 
     // Open the DevTools.
     win.webContents.openDevTools()
@@ -66,26 +74,48 @@ function createWindow() {
     })
 }
 
-function startLucee() {
-    var windowsCmd = 'cd ' + app.getAppPath() + '\\lucee && ' + 'startup.bat'
-    var unixCmd = 'cd ' + app.getAppPath() + '/lucee && ./startup.sh' 
+function startCommandBox() {
+    require('find-java-home')(function(err, home){
+        if(err)return console.log(err);
 
-    var cmd = (is.windows()) ? windowsCmd : unixCmd;
+        if (is.windows()) {
+            var java_path = home + '\\bin\\java';
+            var cfml_path = app.getAppPath() + '\\cfml';
+            var box_path = app.getAppPath() + '\\commandbox\\box.jar';
+        } else {
+            var java_path = home + '/bin/java';
+            var cfml_path = app.getAppPath() + '/cfml';
+            var box_path = app.getAppPath() + '/commandbox/box.jar';
+        }
 
-    execute(cmd, (output) => {
-        console.log(output)
-    })
+        var cmd = `cd ${cfml_path} && ${java_path} -jar ${box_path} server start`;
+
+        execute(cmd, (output) => {
+            console.log(output)
+        })
+    });
 }
 
-function stopLucee() {
-    var windowsCmd = 'cd ' + app.getAppPath() + '\\lucee && ' + 'shutdown.bat'
-    var unixCmd = 'cd ' + app.getAppPath() + '/lucee && ./shutdown.sh' 
-    
-    var cmd = (is.windows()) ? windowsCmd : unixCmd
+function stopCommandBox() {
+    require('find-java-home')(function(err, home){
+        if(err)return console.log(err);
 
-    execute(cmd, (output) => {
-        console.log(output)
-    })
+        if (is.windows()) {
+            var java_path = home + '\\bin\\java';
+            var cfml_path = app.getAppPath() + '\\cfml';
+            var box_path = app.getAppPath() + '\\commandbox\\box.jar';
+        } else {
+            var java_path = home + '/bin/java';
+            var cfml_path = app.getAppPath() + '/cfml';
+            var box_path = app.getAppPath() + '/commandbox/box.jar';
+        }
+
+        var cmd = `cd ${cfml_path} && ${java_path} -jar ${box_path} server stop`;
+
+        execute(cmd, (output) => {
+            console.log(output)
+        })
+    });
 }
 
 function execute(command, callback) {

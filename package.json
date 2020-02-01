@@ -16,12 +16,19 @@
         "run",
         "shell"
     ],
+    "build": {
+        "asar": true,
+        "asarUnpack": [
+          "commandbox/box.jar"
+        ]
+    },
     "author": "Cory Fail (fyroc)",
     "license": "MIT",
     "devDependencies": {
         "electron": "^6.0.8"
     },
     "dependencies": {
-        "electron-is": "^3.0.0"
+        "electron-is": "^3.0.0",
+        "find-java-home": "^1.1.0"
     }
 }
