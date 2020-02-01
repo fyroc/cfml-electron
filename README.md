@@ -4,6 +4,9 @@ An example of how to run CommandBox (Any CFML Engine) inside of Electron.
 ## Installation
 To install, you first need to install Node/NPM if you haven't already. This method could also be used for any Node.JS app.
 
+## Why CommandBox?
+I mainly moved from straight Lucee to CommandBox due to the flexiilty of CommandBox. We can define which CFML engine we want to use, as well as control it much easier. I also hope to have CommandBox be able to run with `.asar` builds, but we will see.
+
 ### Clone this repo somewhere.
 
 `git clone https://github.com/fyroc/cfml-electron.git`
