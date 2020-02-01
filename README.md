@@ -18,7 +18,7 @@ To install, you first need to install Node/NPM if you haven't already. This meth
 
 `npm start`
 
-## Using ColdBox
+## Using Commandbox
 
 - Upload your ColdFusion files to `/cfml`
 - Edit the `server.json` file to fit your needs, just be sure the port matches what is in the main.js file
