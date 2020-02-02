@@ -48,11 +48,6 @@ app.on('before-quit', () => {
 
 function createWindow() {
 
-    require('find-java-home')(function(err, home){
-        if(err)return console.log(err);
-        console.log(home);
-    });
-
     // Create the browser window.
     win = new BrowserWindow({
         width: 800,
