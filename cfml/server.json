@@ -1,0 +1,24 @@
+{
+    "name":"cfml-electron",
+    "openBrowser":false,
+    "trayOptions":[
+        {
+            "label":"Foo",
+            "action":"openbrowser",
+            "url":"http://${runwar.host}:${runwar.port}/foobar.cfm",
+            "disabled":false,
+            "image":"/path/to/image.png"
+        }
+    ],
+    "jvm":{
+        "heapSize":512,
+        "minHeapSize":256
+    },
+    "web":{
+        "welcomeFiles":"index.cfm",
+        "HTTP":{
+            "enable":true,
+            "port":8888
+        }
+    }
+}

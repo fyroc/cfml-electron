@@ -3,17 +3,25 @@ const {
     BrowserWindow
 } = require('electron')
 const is = require("electron-is")
-const exec = require('child_process').exec
+const box = require('commandboxjs')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+// Make sure this port matches the server.json port
+const commandbox_port = 8888
+
+let cfml_path = app.getAppPath() + '/cfml';
+if (is.windows()) {
+    cfml_path = app.getAppPath() + '\\cfml';
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-    startLucee()
+    startCommandBox()
     createWindow()
 })
 
@@ -35,10 +43,15 @@ app.on('activate', () => {
 })
 
 app.on('before-quit', () => {
-    stopLucee()
+    stopCommandBox()
 })
 
 function createWindow() {
+
+    require('find-java-home')(function(err, home){
+        if(err)return console.log(err);
+        console.log(home);
+    });
 
     // Create the browser window.
     win = new BrowserWindow({
@@ -51,8 +64,8 @@ function createWindow() {
 
     // and load the index.html of the app.
     setTimeout(function() {
-        win.loadURL('http://localhost:8888/')
-    }, 5000);
+        win.loadURL('http://localhost:'+commandbox_port+'/')
+    }, 15000);
 
     // Open the DevTools.
     win.webContents.openDevTools()
@@ -66,30 +79,10 @@ function createWindow() {
     })
 }
 
-function startLucee() {
-    var windowsCmd = 'cd ' + app.getAppPath() + '\\lucee && ' + 'startup.bat'
-    var unixCmd = 'cd ' + app.getAppPath() + '/lucee && ./startup.sh' 
-
-    var cmd = (is.windows()) ? windowsCmd : unixCmd;
-
-    execute(cmd, (output) => {
-        console.log(output)
-    })
+function startCommandBox() {
+    box.start(cfml_path);
 }
 
-function stopLucee() {
-    var windowsCmd = 'cd ' + app.getAppPath() + '\\lucee && ' + 'shutdown.bat'
-    var unixCmd = 'cd ' + app.getAppPath() + '/lucee && ./shutdown.sh' 
-    
-    var cmd = (is.windows()) ? windowsCmd : unixCmd
-
-    execute(cmd, (output) => {
-        console.log(output)
-    })
-}
-
-function execute(command, callback) {
-    exec(command, (error, stdout, stderr) => { 
-        callback(stdout)
-    })
+function stopCommandBox() {
+    box.stop(cfml_path);
 }

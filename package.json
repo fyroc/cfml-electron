@@ -1,7 +1,7 @@
 {
-    "name": "lucee-electron",
+    "name": "cfml-electron",
     "version": "0.1.1",
-    "description": "An example of how to run Lucee (CFML) inside of Electron.",
+    "description": "An example of how to run CommandBox (CFML) inside of Electron.",
     "main": "main.js",
     "scripts": {
         "start": "electron ."
@@ -22,6 +22,7 @@
         "electron": "^6.0.8"
     },
     "dependencies": {
+        "commandboxjs": "^1.0.0",
         "electron-is": "^3.0.0"
     }
 }
