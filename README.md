@@ -26,3 +26,7 @@ I mainly moved from straight Lucee to CommandBox due to the flexiilty of Command
 - Upload your ColdFusion files to `/cfml`
 - Edit the `server.json` file to fit your needs, just be sure the port matches what is in the main.js file
 - You can also access CommandBox with http://localhost:8888/ and the systemtray (can be hidden as well)
+
+## Notes
+
+If you want to use electron-builder to build this, make sure `"asar": false` or else CommandBox will not run.

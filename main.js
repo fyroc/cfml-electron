@@ -3,7 +3,7 @@ const {
     BrowserWindow
 } = require('electron')
 const is = require("electron-is")
-const exec = require('child_process').exec
+const box = require('commandboxjs')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,6 +11,11 @@ let win
 
 // Make sure this port matches the server.json port
 const commandbox_port = 8888
+
+let cfml_path = app.getAppPath() + '/cfml';
+if (is.windows()) {
+    cfml_path = app.getAppPath() + '\\cfml';
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -75,53 +80,9 @@ function createWindow() {
 }
 
 function startCommandBox() {
-    require('find-java-home')(function(err, home){
-        if(err)return console.log(err);
-
-        if (is.windows()) {
-            var java_path = home + '\\bin\\java';
-            var cfml_path = app.getAppPath() + '\\cfml';
-            var box_path = app.getAppPath() + '\\commandbox\\box.jar';
-        } else {
-            var java_path = home + '/bin/java';
-            var cfml_path = app.getAppPath() + '/cfml';
-            var box_path = app.getAppPath() + '/commandbox/box.jar';
-        }
-
-        var cmd = `cd "${cfml_path}" && "${java_path}" -jar "${box_path}" server start`;
-
-        execute(cmd, (output) => {
-            console.log(output)
-        })
-    });
+    box.start(cfml_path);
 }
 
 function stopCommandBox() {
-    require('find-java-home')(function(err, home){
-        if(err)return console.log(err);
-
-        if (is.windows()) {
-            var java_path = home + '\\bin\\java';
-            var cfml_path = app.getAppPath() + '\\cfml';
-            var box_path = app.getAppPath() + '\\commandbox\\box.jar';
-        } else {
-            var java_path = home + '/bin/java';
-            var cfml_path = app.getAppPath() + '/cfml';
-            var box_path = app.getAppPath() + '/commandbox/box.jar';
-        }
-
-        var cmd = `cd "${cfml_path}" && "${java_path}" -jar "${box_path}" server stop`;
-
-        execute(cmd, (output) => {
-            console.log(output)
-        })
-    });
-}
-
-function execute(command, callback) {
-    exec(command, (error, stdout, stderr) => { 
-        if( error ) callback(error)
-        if( stderr ) callback(stderr)
-        if( stdout ) callback(stdout)
-    })
+    box.stop(cfml_path);
 }
