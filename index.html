@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Your App Name</title>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="assets/jquery-3.4.1.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+  </head>
+  <body>
+    Please wait while the application loads. what
+  </body>
+
+  <script>
+      // Ping the server until it starts, once it does, open it
+      
+      var commandbox_port = global.location.search;
+      commandbox_port = commandbox_port.replace("?port=", "");
+      var pingUrl = `http://localhost:${commandbox_port}`;
+      setInterval(ping, 1000);
+
+      function ping() {
+          $.ajax({
+              url: pingUrl,
+              success: function(result) {
+                  window.location.href = pingUrl;
+              }
+          });
+      }
+  </script>
+</html>

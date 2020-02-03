@@ -58,9 +58,7 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    setTimeout(function() {
-        win.loadURL('http://localhost:'+commandbox_port+'/')
-    }, 15000);
+    win.loadURL(`file://${__dirname}/index.html?port=${commandbox_port}`);
 
     // Open the DevTools.
     win.webContents.openDevTools()

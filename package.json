@@ -1,6 +1,6 @@
 {
     "name": "cfml-electron",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "An example of how to run CommandBox (CFML) inside of Electron.",
     "main": "main.js",
     "scripts": {
