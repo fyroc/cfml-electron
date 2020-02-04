@@ -2,8 +2,8 @@ const {
     app,
     BrowserWindow
 } = require('electron')
-const is = require("electron-is")
 const box = require('commandboxjs')
+const path = require('path')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -12,10 +12,7 @@ let win
 // Make sure this port matches the server.json port
 const commandbox_port = 8888
 
-let cfml_path = app.getAppPath() + '/cfml';
-if (is.windows()) {
-    cfml_path = app.getAppPath() + '\\cfml';
-}
+var cfml_path = path.join(app.getAppPath(), 'cfml');
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
