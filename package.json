@@ -22,7 +22,7 @@
         "electron": "^6.0.8"
     },
     "dependencies": {
-        "commandboxjs": "^1.1.0",
+        "commandboxjs": "^1.1.1",
         "electron-is": "^3.0.0"
     }
 }
