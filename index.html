@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Your App Name</title>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-    <script src="assets/jquery-3.4.1.min.js"></script>
     <script>if (window.module) module = window.module;</script>
   </head>
   <body>
@@ -17,15 +16,24 @@
       var commandbox_port = global.location.search;
       commandbox_port = commandbox_port.replace("?port=", "");
       var pingUrl = `http://localhost:${commandbox_port}`;
+      var errorCount = 0;
       setInterval(ping, 1000);
 
       function ping() {
-          $.ajax({
-              url: pingUrl,
-              success: function(result) {
-                  window.location.href = pingUrl;
-              }
-          });
+        if (errorCount > 600) {
+          //shouldnt take longer than 10min, something wrong
+          document.body.innerText="Unable to start commandbox";
+          return;
+        }
+        fetch(pingUrl).then(function(response) {
+          if (response.status == 200) {
+            window.location.href = pingUrl;
+          } else {
+            errorCount++;
+          }
+        }).catch(function(err) {
+          errorCount++;
+        });
       }
   </script>
 </html>
