@@ -1,6 +1,6 @@
 {
     "name": "cfml-electron",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "An example of how to run CommandBox (CFML) inside of Electron.",
     "main": "main.js",
     "scripts": {
@@ -19,10 +19,10 @@
     "author": "Cory Fail (fyroc)",
     "license": "MIT",
     "devDependencies": {
-        "electron": "^6.0.8"
+        "electron": "^6.1.12"
     },
     "dependencies": {
-        "commandboxjs": "^1.1.1",
+        "commandboxjs": "^1.2.1",
         "electron-is": "^3.0.0"
     }
 }
