@@ -14,6 +14,10 @@ const commandbox_port = 8888
 
 var cfml_path = path.join(app.getAppPath(), 'cfml');
 
+// Use commented out value to define a different place where your CFML engine files will live
+var properties_path = '';
+//var properties_path = path.join(path_to_module, 'commandbox', 'home');
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -70,9 +74,9 @@ function createWindow() {
 }
 
 function startCommandBox() {
-    box.start(cfml_path);
+    box.execute(cfml_path, 'server start', properties_path);
 }
 
 function stopCommandBox() {
-    box.stop(cfml_path);
+    box.execute(cfml_path, 'server stop', properties_path);
 }
